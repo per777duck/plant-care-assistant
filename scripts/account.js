@@ -48,11 +48,9 @@ async function renderAccountPage() {
     }
 }
 
-document.querySelectorAll(".account-tab").forEach(tab => {
-    tab.addEventListener("click", () => switchTab(tab.dataset.tab));
-});
+let accountPageInitialized = false;
 
-document.getElementById("login-form")?.addEventListener("submit", async (event) => {
+async function handleLoginSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = {
@@ -73,14 +71,15 @@ document.getElementById("login-form")?.addEventListener("submit", async (event) 
 
         showMessage("account-message", "");
         form.reset();
+        await updateAccountButton();
         await renderAccountPage();
     } catch (error) {
         console.error(error);
         showMessage("account-message", "Не удалось войти. Проверьте, что сервер запущен.", true);
     }
-});
+}
 
-document.getElementById("register-form")?.addEventListener("submit", async (event) => {
+async function handleRegisterSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = {
@@ -107,9 +106,9 @@ document.getElementById("register-form")?.addEventListener("submit", async (even
         console.error(error);
         showMessage("account-message", "Не удалось зарегистрироваться", true);
     }
-});
+}
 
-document.getElementById("profile-form")?.addEventListener("submit", async (event) => {
+async function handleProfileSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = {
@@ -134,9 +133,9 @@ document.getElementById("profile-form")?.addEventListener("submit", async (event
         console.error(error);
         showMessage("profile-message", "Не удалось обновить профиль", true);
     }
-});
+}
 
-document.getElementById("password-form")?.addEventListener("submit", async (event) => {
+async function handlePasswordSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const payload = {
@@ -161,9 +160,9 @@ document.getElementById("password-form")?.addEventListener("submit", async (even
         console.error(error);
         showMessage("profile-message", "Не удалось сменить пароль", true);
     }
-});
+}
 
-document.getElementById("logout-btn")?.addEventListener("click", async () => {
+async function handleLogout() {
     try {
         await apiFetch("/auth/logout", { method: "POST" });
         await updateAccountButton();
@@ -172,6 +171,24 @@ document.getElementById("logout-btn")?.addEventListener("click", async () => {
         console.error(error);
         showMessage("profile-message", "Не удалось выйти", true);
     }
-});
+}
 
-renderAccountPage();
+window.initAccountPage = function initAccountPage() {
+    if (!accountPageInitialized) {
+        accountPageInitialized = true;
+
+        document.querySelectorAll(".account-tab").forEach(tab => {
+            tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+        });
+
+        document.getElementById("login-form")?.addEventListener("submit", handleLoginSubmit);
+        document.getElementById("register-form")?.addEventListener("submit", handleRegisterSubmit);
+        document.getElementById("profile-form")?.addEventListener("submit", handleProfileSubmit);
+        document.getElementById("password-form")?.addEventListener("submit", handlePasswordSubmit);
+        document.getElementById("logout-btn")?.addEventListener("click", handleLogout);
+    }
+
+    renderAccountPage();
+};
+
+window.initAccountPage();

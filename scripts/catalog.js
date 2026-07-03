@@ -1,18 +1,21 @@
-const API_BASE = window.API_BASE ?? (
-    window.location.protocol === "file:" ||
-    (window.location.port && window.location.port !== "8080")
+function getApiBase() {
+    if (window.API_BASE !== undefined) {
+        return window.API_BASE;
+    }
+    return window.location.protocol === "file:" ||
+        (window.location.port && window.location.port !== "8080")
         ? "http://localhost:8080"
-        : ""
-);
-
-const API_URL = `${API_BASE}/plants`;
+        : "";
+}
 
 window.loadPlants = async function loadPlants() {
     const container = document.getElementById("plants-container");
     if (!container) return;
 
+    const apiBase = getApiBase();
+
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${apiBase}/plants`);
 
         if (!response.ok) {
             throw new Error(`Ошибка сервера: ${response.status}`);
@@ -30,7 +33,7 @@ window.loadPlants = async function loadPlants() {
         plants.forEach(plant => {
             const card = document.createElement("article");
             card.className = "plant-card";
-            const imageSrc = `${API_BASE}${plant.imagePath || "/images/plants/default.jpg"}`;
+            const imageSrc = `${apiBase}${plant.imagePath || "/images/plants/default.jpg"}`;
             card.innerHTML = `
                 <img class="plant-card-image" src="${imageSrc}" alt="${plant.name ?? "Растение"}" loading="lazy">
                 <h2>${plant.name ?? "Без названия"}</h2>

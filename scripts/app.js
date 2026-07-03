@@ -6,7 +6,6 @@ async function loadPage(page, button) {
         document.getElementById("content").innerHTML = html;
 
         document.getElementById("dynamic-notifications-script")?.remove();
-        document.getElementById("dynamic-catalog-script")?.remove();
         document.getElementById("dynamic-account-script")?.remove();
 
         if (page === "notifications") {
@@ -16,22 +15,17 @@ async function loadPage(page, button) {
             document.body.appendChild(script);
         }
         if (page === "catalog") {
-            const runCatalog = () => window.loadPlants?.();
-            if (typeof window.loadPlants === "function") {
-                runCatalog();
-            } else if (!document.getElementById("dynamic-catalog-script")) {
-                const script = document.createElement("script");
-                script.src = "../scripts/catalog.js";
-                script.id = "dynamic-catalog-script";
-                script.onload = runCatalog;
-                document.body.appendChild(script);
-            }
+            window.loadPlants?.();
         }
         if (page === "account") {
-            const script = document.createElement("script");
-            script.src = "../scripts/account.js";
-            script.id = "dynamic-account-script";
-            document.body.appendChild(script);
+            if (document.getElementById("dynamic-account-script")) {
+                window.initAccountPage?.();
+            } else {
+                const script = document.createElement("script");
+                script.src = "../scripts/account.js";
+                script.id = "dynamic-account-script";
+                document.body.appendChild(script);
+            }
         }
 
         document.querySelectorAll("button[data-page]")
