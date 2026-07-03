@@ -5,15 +5,18 @@ async function loadPage(page, button) {
 
         document.getElementById("content").innerHTML = html;
 
-        const oldScript = document.getElementById("dynamic-notifications-script");
-        if (oldScript) {
-            oldScript.remove();
-        }
-
+        document.getElementById("dynamic-notifications-script")?.remove();
+        document.getElementById("dynamic-catalog-script")?.remove();
         if (page === "notifications") {
             const script = document.createElement("script");
             script.src = "../scripts/notifications.js";
             script.id = "dynamic-notifications-script";
+            document.body.appendChild(script);
+        }
+        if (page === "catalog") {
+            const script = document.createElement("script");
+            script.src = "../scripts/catalog.js";
+            script.id = "dynamic-catalog-script";
             document.body.appendChild(script);
         }
 
@@ -44,3 +47,4 @@ window.onload = () => {
     const defaultButton = document.querySelector("button[data-page='catalog']");
     loadPage("catalog", defaultButton);
 };
+
