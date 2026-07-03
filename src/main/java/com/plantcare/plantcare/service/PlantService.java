@@ -19,7 +19,34 @@ public class PlantService {
         return plantRepository.findAll();
     }
 
+    public Plant getPlantById(Long id) {
+        return plantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Plant not found"));
+    }
+
     public Plant addPlant(Plant plant) {
         return plantRepository.save(plant);
+    }
+
+    public Plant updatePlant(Long id, Plant updatedPlant) {
+
+        Plant plant = plantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Plant not found"));
+
+        plant.setName(updatedPlant.getName());
+        plant.setWateringRecomendation(updatedPlant.getWateringRecomendation());
+        plant.setLightningRecomendation(updatedPlant.getLightningRecomendation());
+        plant.setTransferInformation(updatedPlant.getTransferInformation());
+        plant.setPoisonInformation(updatedPlant.getPoisonInformation());
+        plant.setOptionalInfoCare(updatedPlant.getOptionalInfoCare());
+
+        return plantRepository.save(plant);
+    }
+
+    public void deletePlant(Long id) {
+        plantRepository.deleteById(id);
+    }
+    public List<Plant> searchPlants(String name) {
+        return plantRepository.findByNameContainingIgnoreCase(name);
     }
 }
