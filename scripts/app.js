@@ -12,8 +12,8 @@ async function loadPage(page, button) {
 
         if (page === "notifications") {
             const script = document.createElement("script");
-            script.src = "../scripts/notifications.js"; // Путь к файлу скрипта уведомлений
-            script.id = "dynamic-notifications-script"; // ID, чтобы потом его найти и удалить
+            script.src = "../scripts/notifications.js";
+            script.id = "dynamic-notifications-script";
             document.body.appendChild(script);
         }
 
