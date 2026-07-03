@@ -1,18 +1,28 @@
-const API_URL = "http://localhost:8080/plants";
+function getApiBase() {
+    if (window.API_BASE !== undefined) {
+        return window.API_BASE;
+    }
+    return window.location.protocol === "file:" ||
+        (window.location.port && window.location.port !== "8080")
+        ? "http://localhost:8080"
+        : "";
+}
 
-async function loadPlants() {
+window.loadPlants = async function loadPlants() {
     const container = document.getElementById("plants-container");
     if (!container) return;
 
+    const apiBase = getApiBase();
+
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(`${apiBase}/plants`);
 
         if (!response.ok) {
             throw new Error(`Ошибка сервера: ${response.status}`);
         }
-
+        console.log("Ожидание растений");
         const plants = await response.json();
-
+        console.log("Дождался");
         if (!plants.length) {
             container.innerHTML = "<p>В справочнике пока нет растений.</p>";
             return;
@@ -23,7 +33,9 @@ async function loadPlants() {
         plants.forEach(plant => {
             const card = document.createElement("article");
             card.className = "plant-card";
+            const imageSrc = `${apiBase}${plant.imagePath || "/images/plants/default.jpg"}`;
             card.innerHTML = `
+                <img class="plant-card-image" src="${imageSrc}" alt="${plant.name ?? "Растение"}" loading="lazy">
                 <h2>${plant.name ?? "Без названия"}</h2>
                 <p><strong>Полив:</strong> ${plant.wateringRecomendation ?? "—"}</p>
                 <p><strong>Освещение:</strong> ${plant.lightningRecomendation ?? "—"}</p>
@@ -38,6 +50,4 @@ async function loadPlants() {
         console.error("Не удалось загрузить растения:", error);
         container.innerHTML = "<p>Не удалось загрузить данные. Проверьте, что сервер запущен.</p>";
     }
-}
-
-loadPlants();
+};

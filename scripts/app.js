@@ -6,7 +6,8 @@ async function loadPage(page, button) {
         document.getElementById("content").innerHTML = html;
 
         document.getElementById("dynamic-notifications-script")?.remove();
-        document.getElementById("dynamic-catalog-script")?.remove();
+        document.getElementById("dynamic-account-script")?.remove();
+
         if (page === "notifications") {
             const script = document.createElement("script");
             script.src = "../scripts/notifications.js";
@@ -14,10 +15,17 @@ async function loadPage(page, button) {
             document.body.appendChild(script);
         }
         if (page === "catalog") {
-            const script = document.createElement("script");
-            script.src = "../scripts/catalog.js";
-            script.id = "dynamic-catalog-script";
-            document.body.appendChild(script);
+            window.loadPlants?.();
+        }
+        if (page === "account") {
+            if (document.getElementById("dynamic-account-script")) {
+                window.initAccountPage?.();
+            } else {
+                const script = document.createElement("script");
+                script.src = "../scripts/account.js";
+                script.id = "dynamic-account-script";
+                document.body.appendChild(script);
+            }
         }
 
         document.querySelectorAll("button[data-page]")
@@ -44,6 +52,7 @@ function bindNavigationButtons() {
 
 window.onload = () => {
     bindNavigationButtons();
+    updateAccountButton();
     const defaultButton = document.querySelector("button[data-page='catalog']");
     loadPage("catalog", defaultButton);
 };
