@@ -19,9 +19,9 @@ header{
 
     padding: 0 30px;
 
-    background: #FFFFFF;
+    background: rgb(221, 234, 227);
 
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid rgb(181, 195, 188);
 }
 
 .account-btn{
@@ -93,7 +93,7 @@ header{
 }
 
 .chat-btn:hover{
-    background: #C8D030;
+    background: #9ACD32;
 }
 
 .notification-btn{
@@ -115,7 +115,7 @@ header{
 }
 
 .notification-btn:hover{
-    background: #C8D030;
+    background: #9ACD32;
 }
 
 main{
@@ -130,7 +130,7 @@ aside{
 
     width: 220px;
 
-    background: white;
+    background: rgb(221, 234, 227);
 
     border-right: 1px solid #e5e5e5;
 
@@ -139,6 +139,7 @@ aside{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    border-right: 1px solid rgb(181, 195, 188);
 
 }
 
@@ -154,22 +155,25 @@ aside{
 
     cursor: pointer;
 
-    box-shadow: 0 3px 8px rgba(128,128,128,.18);
+    box-shadow: 5px 10px 8px rgba(50, 50, 50, 0.108);
 
-    transition: .2s;
+    transition: all 0.3s ease;
 
 }
 
 .menu-btn:hover{
 
-    background: #C8D030;
-
+    background: linear-gradient(#8abe45,#4acc43);
+    transform: scale(1.05) translateY(-2px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
-
+.menu-btn:active {
+    transform: scale(0.95) translateY(0); 
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
 .active{
 
-    background: #568D44;
-
+    background: linear-gradient(#8bc34a,#33691e);
     color: white;
 
 }
@@ -238,7 +242,7 @@ article button{
 
     cursor: pointer;
 
-    box-shadow: 0 3px 8px rgba(128,128,128,.18);
+    box-shadow: 0 4px 10px rgba(128,128,128,.18);
 
     transition: .2s;
 
@@ -246,6 +250,6 @@ article button{
 
 article button:hover{
 
-    background: #C8D030;
+    background: #9ACD32;
 
 }
