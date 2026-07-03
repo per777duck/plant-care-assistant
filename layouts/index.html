@@ -9,7 +9,7 @@
 <body>
     <header>
 
-    <button class="account-btn">
+    <button class="account-btn" data-page="account">
         <div class="account-icon"></div>
         Демьян
     </button>
@@ -18,11 +18,11 @@
 
     <div class="header-right">
 
-        <button class="chat-btn">
+        <button class="chat-btn" data-page="chat">
             💬 Чат
         </button>
 
-        <button class="notification-btn">
+        <button class="notification-btn" data-page="notifications">
             🔔
         </button>
 
@@ -33,35 +33,23 @@
     <main>
         <aside>
 
-            <button class="menu-btn active">
+            <button class="menu-btn active" data-page="catalog">
                 📚 Справочник
             </button>
 
-            <button class="menu-btn">
+            <button class="menu-btn" data-page="myPlants">
                 🌿 Мои растения
             </button>
 
-            <button class="menu-btn">
+            <button class="menu-btn" data-page="favorites">
                 ⭐ Избранное
             </button>
 
         </aside>
 
-        <section>
-
-            <div class="plants-container">
-
-                <article>
-                    ...
-                </article>
-
-                <article>
-                    ...
-                </article>
-
-            </div>
-
-        </section>
+        <section id="content"></section>
     </main>
+
+    <script src="../scripts/app.js"></script>
 </body>
 </html>
