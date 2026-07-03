@@ -1,4 +1,4 @@
-package com.plantcare.plantcare.config;
+package com.plantcare.plantcare.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

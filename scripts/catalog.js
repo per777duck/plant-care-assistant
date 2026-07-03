@@ -16,9 +16,9 @@ async function loadPlants() {
         if (!response.ok) {
             throw new Error(`Ошибка сервера: ${response.status}`);
         }
-
+        console.log("Ожидание растений");
         const plants = await response.json();
-
+        console.log("Дождался");
         if (!plants.length) {
             container.innerHTML = "<p>В справочнике пока нет растений.</p>";
             return;
