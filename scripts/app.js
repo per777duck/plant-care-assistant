@@ -5,6 +5,18 @@ async function loadPage(page, button) {
 
         document.getElementById("content").innerHTML = html;
 
+        const oldScript = document.getElementById("dynamic-notifications-script");
+        if (oldScript) {
+            oldScript.remove();
+        }
+
+        if (page === "notifications") {
+            const script = document.createElement("script");
+            script.src = "../scripts/notifications.js"; // Путь к файлу скрипта уведомлений
+            script.id = "dynamic-notifications-script"; // ID, чтобы потом его найти и удалить
+            document.body.appendChild(script);
+        }
+
         document.querySelectorAll("button[data-page]")
             .forEach(btn => btn.classList.remove("active"));
 
