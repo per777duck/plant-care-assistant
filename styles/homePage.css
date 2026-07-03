@@ -312,6 +312,22 @@ article{
 
 }
 
+.plant-card-image{
+
+    width: 100%;
+
+    height: 160px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    margin-bottom: 14px;
+
+    background: #e8ede9;
+
+}
+
 article h2{
 
     margin-bottom: 15px;

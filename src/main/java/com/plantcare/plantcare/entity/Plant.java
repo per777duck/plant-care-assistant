@@ -22,5 +22,6 @@ public class Plant {
         private String poisonInformation;
     @Column(name="optional_info_care")
         private String optionalInfoCare;
-
+    @Column(name="image_path")
+        private String imagePath;
 }

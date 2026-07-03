@@ -29,7 +29,9 @@ window.loadPlants = async function loadPlants() {
         plants.forEach(plant => {
             const card = document.createElement("article");
             card.className = "plant-card";
+            const imageSrc = `${API_BASE}${plant.imagePath || "/images/plants/default.jpg"}`;
             card.innerHTML = `
+                <img class="plant-card-image" src="${imageSrc}" alt="${plant.name ?? "Растение"}" loading="lazy">
                 <h2>${plant.name ?? "Без названия"}</h2>
                 <p><strong>Полив:</strong> ${plant.wateringRecomendation ?? "—"}</p>
                 <p><strong>Освещение:</strong> ${plant.lightningRecomendation ?? "—"}</p>
