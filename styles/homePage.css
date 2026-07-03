@@ -368,3 +368,173 @@ article button:hover{
 
 }
 
+.account-page{
+
+    display: flex;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+.account-card{
+
+    width: 100%;
+
+    max-width: 480px;
+
+    padding: 28px;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow: 0 4px 10px rgba(128,128,128,.15);
+
+}
+
+.account-card h2,
+.account-card h3{
+
+    margin-bottom: 12px;
+
+}
+
+.account-subtitle{
+
+    margin-bottom: 20px;
+
+    color: #555;
+
+}
+
+.account-tabs{
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+.account-tab{
+
+    flex: 1;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: #eef3ef;
+
+    cursor: pointer;
+
+}
+
+.account-tab.active{
+
+    background: #9ACD32;
+
+}
+
+.account-form{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+.account-form label{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    font-size: 14px;
+
+}
+
+.account-form input{
+
+    height: 42px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 14px;
+
+    padding: 0 14px;
+
+}
+
+.account-form-secondary{
+
+    margin-top: 24px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid #e8e8e8;
+
+}
+
+.account-submit,
+.account-logout{
+
+    height: 44px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    cursor: pointer;
+
+}
+
+.account-submit{
+
+    background: #9ACD32;
+
+}
+
+.account-logout{
+
+    margin-top: 16px;
+
+    width: 100%;
+
+    background: white;
+
+    box-shadow: 0 4px 10px rgba(128,128,128,.18);
+
+}
+
+.account-message{
+
+    margin-top: 16px;
+
+    min-height: 20px;
+
+    color: #2f6b2f;
+
+}
+
+.account-message.error{
+
+    color: #b00020;
+
+}
+
+.hidden{
+
+    display: none;
+
+}
+

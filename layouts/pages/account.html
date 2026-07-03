@@ -1,0 +1,76 @@
+<div class="account-page">
+    <div class="account-card" id="account-guest">
+        <h2>Аккаунт</h2>
+        <p class="account-subtitle">Войдите или зарегистрируйтесь, чтобы сохранять свои растения.</p>
+
+        <div class="account-tabs">
+            <button type="button" class="account-tab active" data-tab="login">Вход</button>
+            <button type="button" class="account-tab" data-tab="register">Регистрация</button>
+        </div>
+
+        <form id="login-form" class="account-form">
+            <label>
+                Email
+                <input type="email" name="email" required placeholder="you@example.com">
+            </label>
+            <label>
+                Пароль
+                <input type="password" name="password" required minlength="6" placeholder="Минимум 6 символов">
+            </label>
+            <button type="submit" class="account-submit">Войти</button>
+        </form>
+
+        <form id="register-form" class="account-form hidden">
+            <label>
+                Имя
+                <input type="text" name="userName" required maxlength="50" placeholder="Демьян">
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" required placeholder="you@example.com">
+            </label>
+            <label>
+                Пароль
+                <input type="password" name="password" required minlength="6" placeholder="Минимум 6 символов">
+            </label>
+            <button type="submit" class="account-submit">Зарегистрироваться</button>
+        </form>
+
+        <p class="account-message" id="account-message"></p>
+    </div>
+
+    <div class="account-card hidden" id="account-profile">
+        <h2>Профиль</h2>
+        <p class="account-subtitle">Вы вошли как <strong id="profile-name"></strong></p>
+        <p>Email: <span id="profile-email"></span></p>
+        <p>Дата регистрации: <span id="profile-created"></span></p>
+
+        <form id="profile-form" class="account-form">
+            <label>
+                Имя
+                <input type="text" name="userName" id="profile-userName" required maxlength="50">
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" id="profile-email-input" required>
+            </label>
+            <button type="submit" class="account-submit">Сохранить профиль</button>
+        </form>
+
+        <form id="password-form" class="account-form account-form-secondary">
+            <h3>Сменить пароль</h3>
+            <label>
+                Текущий пароль
+                <input type="password" name="oldPassword" required>
+            </label>
+            <label>
+                Новый пароль
+                <input type="password" name="newPassword" required minlength="6">
+            </label>
+            <button type="submit" class="account-submit">Обновить пароль</button>
+        </form>
+
+        <button type="button" class="account-logout" id="logout-btn">Выйти</button>
+        <p class="account-message" id="profile-message"></p>
+    </div>
+</div>

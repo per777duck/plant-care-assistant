@@ -1,8 +1,9 @@
-const API_BASE =
+const API_BASE = window.API_BASE ?? (
     window.location.protocol === "file:" ||
     (window.location.port && window.location.port !== "8080")
         ? "http://localhost:8080"
-        : "";
+        : ""
+);
 
 const API_URL = `${API_BASE}/plants`;
 
