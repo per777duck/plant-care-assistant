@@ -1,12 +1,13 @@
-const API_BASE =
+const API_BASE = window.API_BASE ?? (
     window.location.protocol === "file:" ||
     (window.location.port && window.location.port !== "8080")
         ? "http://localhost:8080"
-        : "";
+        : ""
+);
 
 const API_URL = `${API_BASE}/plants`;
 
-async function loadPlants() {
+window.loadPlants = async function loadPlants() {
     const container = document.getElementById("plants-container");
     if (!container) return;
 
@@ -29,7 +30,9 @@ async function loadPlants() {
         plants.forEach(plant => {
             const card = document.createElement("article");
             card.className = "plant-card";
+            const imageSrc = `${API_BASE}${plant.imagePath || "/images/plants/default.jpg"}`;
             card.innerHTML = `
+                <img class="plant-card-image" src="${imageSrc}" alt="${plant.name ?? "Растение"}" loading="lazy">
                 <h2>${plant.name ?? "Без названия"}</h2>
                 <p><strong>Полив:</strong> ${plant.wateringRecomendation ?? "—"}</p>
                 <p><strong>Освещение:</strong> ${plant.lightningRecomendation ?? "—"}</p>
@@ -44,6 +47,4 @@ async function loadPlants() {
         console.error("Не удалось загрузить растения:", error);
         container.innerHTML = "<p>Не удалось загрузить данные. Проверьте, что сервер запущен.</p>";
     }
-}
-
-loadPlants();
+};
