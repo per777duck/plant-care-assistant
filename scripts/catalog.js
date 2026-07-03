@@ -1,4 +1,10 @@
-const API_URL = "http://localhost:8080/plants";
+const API_BASE =
+    window.location.protocol === "file:" ||
+    (window.location.port && window.location.port !== "8080")
+        ? "http://localhost:8080"
+        : "";
+
+const API_URL = `${API_BASE}/plants`;
 
 async function loadPlants() {
     const container = document.getElementById("plants-container");
