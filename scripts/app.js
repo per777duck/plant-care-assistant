@@ -6,7 +6,6 @@ async function loadPage(page, button) {
         document.getElementById("content").innerHTML = html;
 
         document.getElementById("dynamic-notifications-script")?.remove();
-        document.getElementById("dynamic-catalog-script")?.remove();
         if (page === "notifications") {
             const script = document.createElement("script");
             script.src = "../scripts/notifications.js";
@@ -14,10 +13,16 @@ async function loadPage(page, button) {
             document.body.appendChild(script);
         }
         if (page === "catalog") {
-            const script = document.createElement("script");
-            script.src = "../scripts/catalog.js";
-            script.id = "dynamic-catalog-script";
-            document.body.appendChild(script);
+            const runCatalog = () => window.loadPlants?.();
+            if (typeof window.loadPlants === "function") {
+                runCatalog();
+            } else if (!document.getElementById("dynamic-catalog-script")) {
+                const script = document.createElement("script");
+                script.src = "../scripts/catalog.js";
+                script.id = "dynamic-catalog-script";
+                script.onload = runCatalog;
+                document.body.appendChild(script);
+            }
         }
 
         document.querySelectorAll("button[data-page]")

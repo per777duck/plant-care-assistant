@@ -6,7 +6,7 @@ const API_BASE =
 
 const API_URL = `${API_BASE}/plants`;
 
-async function loadPlants() {
+window.loadPlants = async function loadPlants() {
     const container = document.getElementById("plants-container");
     if (!container) return;
 
@@ -44,6 +44,4 @@ async function loadPlants() {
         console.error("Не удалось загрузить растения:", error);
         container.innerHTML = "<p>Не удалось загрузить данные. Проверьте, что сервер запущен.</p>";
     }
-}
-
-loadPlants();
+};
