@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/homePage.css">
+    <title>PlantCare</title>
+</head>
+<body>
+    <header>
+
+    <button class="account-btn" data-page="account">
+        <div class="account-icon"></div>
+        Демьян
+    </button>
+
+    <input class="search" type="text" placeholder="Поиск растения...">
+
+    <div class="header-right">
+
+        <button class="chat-btn" data-page="chat">
+            💬 Чат
+        </button>
+
+        <button class="notification-btn" data-page="notifications">
+            🔔
+        </button>
+
+    </div>
+
+</header>
+
+    <main>
+        <aside>
+
+            <button class="menu-btn active" data-page="catalog">
+                📚 Справочник
+            </button>
+
+            <button class="menu-btn" data-page="myPlants">
+                🌿 Мои растения
+            </button>
+
+            <button class="menu-btn" data-page="favorites">
+                ⭐ Избранное
+            </button>
+
+        </aside>
+
+        <section id="content"></section>
+    </main>
+
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
