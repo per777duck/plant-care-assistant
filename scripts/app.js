@@ -5,14 +5,16 @@ async function loadPage(page, button) {
 
         document.getElementById("content").innerHTML = html;
 
-        document.getElementById("dynamic-notifications-script")?.remove();
-        document.getElementById("dynamic-account-script")?.remove();
-
         if (page === "notifications") {
-            const script = document.createElement("script");
-            script.src = "../scripts/notifications.js";
-            script.id = "dynamic-notifications-script";
-            document.body.appendChild(script);
+            if (document.getElementById("dynamic-notifications-script")) {
+                window.initNotificationsPage?.();
+            } else {
+                const script = document.createElement("script");
+                script.src = "../scripts/notifications.js";
+                script.id = "dynamic-notifications-script";
+                script.onload = () => window.initNotificationsPage?.();
+                document.body.appendChild(script);
+            }
         }
         if (page === "catalog") {
             window.loadPlants?.();
