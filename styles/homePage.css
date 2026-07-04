@@ -538,3 +538,213 @@ article button:hover{
 
 }
 
+.plants-grid{
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 24px;
+
+    padding: 20px;
+
+}
+
+.collection-page{
+
+    padding: 20px;
+
+}
+
+.collection-page h1{
+
+    margin-bottom: 8px;
+
+}
+
+.collection-subtitle{
+
+    margin-bottom: 24px;
+
+    color: #555;
+
+}
+
+.plant-card-actions{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+}
+
+.plant-action-btn{
+
+    width: 100%;
+
+    min-height: 42px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(128,128,128,.18);
+
+    transition: .2s;
+
+}
+
+.plant-action-btn:hover:not(:disabled){
+
+    background: #9ACD32;
+
+}
+
+.plant-action-btn.active{
+
+    background: #d8f0b8;
+
+}
+
+.plant-action-btn:disabled{
+
+    opacity: .75;
+
+    cursor: default;
+
+}
+
+.plant-action-btn.danger{
+
+    background: #ffe8e8;
+
+}
+
+.plant-meta{
+
+    margin-top: 8px;
+
+    color: #666;
+
+}
+
+.auth-required{
+
+    max-width: 420px;
+
+    padding: 24px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 10px rgba(128,128,128,.15);
+
+}
+
+.my-plants-list{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 24px;
+
+    padding: 20px;
+
+}
+
+.my-plant-card{
+
+    display: grid;
+
+    grid-template-columns: minmax(260px, 320px) 1fr;
+
+    gap: 24px;
+
+    padding: 24px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 10px rgba(128,128,128,.15);
+
+}
+
+.my-plant-form{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+.my-plant-form label{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    font-size: 14px;
+
+}
+
+.my-plant-form input,
+.my-plant-form textarea{
+
+    padding: 10px 12px;
+
+    border: 1px solid #d0d0d0;
+
+    border-radius: 12px;
+
+    font: inherit;
+
+}
+
+.my-plant-form-actions{
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+.my-plant-message{
+
+    min-height: 20px;
+
+    color: #2f6b2f;
+
+}
+
+.my-plant-message.error{
+
+    color: #b00020;
+
+}
+
+@media (max-width: 900px){
+
+    .my-plant-card{
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+

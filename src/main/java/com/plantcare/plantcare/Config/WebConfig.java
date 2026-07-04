@@ -1,6 +1,7 @@
 package com.plantcare.plantcare.Config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -25,11 +26,14 @@ public class WebConfig implements WebMvcConfigurer {
         String root = Paths.get("").toAbsolutePath().toUri().toString();
 
         registry.addResourceHandler("/layouts/**")
-                .addResourceLocations(root + "layouts/");
+                .addResourceLocations(root + "layouts/")
+                .setCacheControl(CacheControl.noStore());
         registry.addResourceHandler("/scripts/**")
-                .addResourceLocations(root + "scripts/");
+                .addResourceLocations(root + "scripts/")
+                .setCacheControl(CacheControl.noStore());
         registry.addResourceHandler("/styles/**")
-                .addResourceLocations(root + "styles/");
+                .addResourceLocations(root + "styles/")
+                .setCacheControl(CacheControl.noStore());
         registry.addResourceHandler("/images/**")
                 .addResourceLocations(
                         "classpath:/static/images/",

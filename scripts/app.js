@@ -1,12 +1,11 @@
 async function loadPage(page, button) {
     try {
-        const response = await fetch(`../layouts/pages/${page}.html`);
+        const response = await fetch(`../layouts/pages/${page}.html`, { cache: "no-store" });
         const html = await response.text();
 
         document.getElementById("content").innerHTML = html;
 
         document.getElementById("dynamic-notifications-script")?.remove();
-        document.getElementById("dynamic-account-script")?.remove();
 
         if (page === "notifications") {
             const script = document.createElement("script");
@@ -16,6 +15,12 @@ async function loadPage(page, button) {
         }
         if (page === "catalog") {
             window.loadPlants?.();
+        }
+        if (page === "favorites") {
+            window.initFavoritesPage?.();
+        }
+        if (page === "myPlants") {
+            window.initMyPlantsPage?.();
         }
         if (page === "account") {
             if (document.getElementById("dynamic-account-script")) {

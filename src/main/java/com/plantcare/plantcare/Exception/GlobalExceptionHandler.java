@@ -41,6 +41,12 @@ public class GlobalExceptionHandler {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", ex.getMessage()));
         }
+        if ("Plant not found".equals(ex.getMessage())
+                || "Favorite not found".equals(ex.getMessage())
+                || "User plant not found".equals(ex.getMessage())) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", ex.getMessage()));
+        }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of("message", ex.getMessage()));
     }

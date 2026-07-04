@@ -38,6 +38,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/plants", "/plants/**").permitAll()
                         .requestMatchers("/", "/layouts/**", "/scripts/**", "/styles/**", "/images/**").permitAll()
                         .requestMatchers("/users/**").authenticated()
+                        .requestMatchers("/favorites/**").authenticated()
+                        .requestMatchers("/user-plants/**").authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)

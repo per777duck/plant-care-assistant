@@ -10,10 +10,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(
-        name = "user_plants",
+        name = "favorites",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "plant_id"})
 )
-public class UserPlant {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,18 +29,4 @@ public class UserPlant {
 
     @Column(name = "date_added", nullable = false)
     private LocalDate dateAdded;
-
-    private String notes;
-
-    @Column(name = "watering_reminder_days")
-    private Integer wateringReminderDays;
-
-    @Column(name = "transfer_reminder_days")
-    private Integer transferReminderDays;
-
-    @Column(name = "last_watered_at")
-    private LocalDate lastWateredAt;
-
-    @Column(name = "last_transferred_at")
-    private LocalDate lastTransferredAt;
 }
