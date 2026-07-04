@@ -1,8 +1,7 @@
-// 1. Справочник (шаблоны) типов уведомлений
 const NOTIFICATION_TEMPLATES = {
     water: {
         title: "💧 Время полива",
-        textTemplate: (plantName) => `Ваш растение "${plantName}" требует полива. Не забудьте отстоять воду комнатной температуры!`
+        textTemplate: (plantName) => `Ваше растение "${plantName}" требует полива. Не забудьте отстоять воду комнатной температуры!`
     },
     feed: {
         title: "☀️ Подкормка",
@@ -22,10 +21,18 @@ const NOTIFICATION_TEMPLATES = {
     }
 };
 
-window.notificationsArray = [
-    { id: 1, title: "💧 Время полива", text: "Ваш Фикус Бенджамина требует полива. Не забудьте отстоять воду комнатной температуры!" },
-    { id: 2, title: "🌿 Новинка в справочнике", text: "Мы добавили подробное руководство по уходу за Монстерой Альба. Загляните в раздел «Справочник»." }
-];
+if (!window.notificationsArray) {
+    window.notificationsArray = [
+        { id: 1, title: "💧 Время полива", text: "Ваш Фикус Бенджамина требует полива. Не забудьте отстоять воду комнатной температуры!" },
+        { id: 2, title: "🌿 Новинка в справочнике", text: "Мы добавили подробное руководство по уходу за Монстерой Альба. Загляните в раздел «Справочник»." }
+    ];
+}
+
+function updateNotificationBadge() {
+    const badge = document.getElementById("notification-badge");
+    if (!badge) return;
+    badge.style.display = (window.unreadNotificationsCount || 0) > 0 ? "block" : "none";
+}
 
 function renderNotifications() {
     const listContainer = document.getElementById("notifications-list");
@@ -35,6 +42,7 @@ function renderNotifications() {
 
     if (window.notificationsArray.length === 0) {
         listContainer.innerHTML = "<p style='text-align: center; color: #999; margin-top: 20px;'>Нет новых уведомлений</p>";
+        updateNotificationBadge();
         return;
     }
 
@@ -52,6 +60,8 @@ function renderNotifications() {
         `;
         listContainer.appendChild(card);
     });
+
+    updateNotificationBadge();
 }
 
 window.addNotification = function(templateType, plantName) {
@@ -72,7 +82,15 @@ window.addNotification = function(templateType, plantName) {
 
     window.notificationsArray.unshift(newNotification);
 
-    renderNotifications();
+    const listContainer = document.getElementById("notifications-list");
+    
+    if (listContainer) {
+        renderNotifications();
+    } else {
+        window.unreadNotificationsCount = (window.unreadNotificationsCount || 0) + 1;
+        updateNotificationBadge();
+    }
+
     console.log("Добавлено новое уведомление:", newNotification);
 };
 
@@ -92,6 +110,7 @@ window.deleteNotification = function(id) {
 
 window.clearAllNotifications = function() {
     window.notificationsArray = [];
+    window.unreadNotificationsCount = 0;
     const cards = document.querySelectorAll('.notification-card');
     cards.forEach(card => {
         card.style.opacity = '0';
@@ -101,4 +120,11 @@ window.clearAllNotifications = function() {
     setTimeout(() => renderNotifications(), 200);
 };
 
-renderNotifications();
+window.initNotificationsPage = function initNotificationsPage() {
+    window.unreadNotificationsCount = 0;
+    renderNotifications();
+};
+
+if (window.unreadNotificationsCount === undefined) {
+    window.unreadNotificationsCount = window.notificationsArray.length;
+}
